@@ -18,8 +18,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
-
-        # groups 
+        # groups
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
         self.bullet_sprites = pygame.sprite.Group()
@@ -84,6 +83,20 @@ class Game:
             else:
                 self.spawn_positions.append((obj.x, obj.y))
 
+    def bullet_collision(self):
+        if self.bullet_sprites:
+            for bullet in self.bullet_sprites:
+                collision_sprites = pygame.sprite.spritecollide(bullet, self.enemy_sprites, False,
+                                                                pygame.sprite.collide_mask)
+                if collision_sprites:
+                    for sprite in collision_sprites:
+                        sprite.destroy()
+                    bullet.kill()
+
+    def player_collision(self):
+        if pygame.sprite.spritecollide(self.player, self.enemy_sprites, False, pygame.sprite.collide_mask):
+            self.running = False
+
     def run(self):
         while self.running:
             # dt 
@@ -94,12 +107,15 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 if event.type == self.enemy_event:
-                    Enemy(choice(self.spawn_positions), choice(list(self.enemy_frames.values())), (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites)
+                    Enemy(choice(self.spawn_positions), choice(list(self.enemy_frames.values())),
+                          (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites)
 
             # update
             self.gun_timer()
             self.input()
             self.all_sprites.update(dt)
+            self.bullet_collision()
+            self.player_collision()
 
             # draw
             self.display_surface.fill('black')
