@@ -25,25 +25,25 @@ menu_button = pygame.Rect(300, 500, 680, 70)
 
 def draw_start_menu():
     screen.fill(BLACK)  # Заливаем экран черным цветом
-    title_surface = font.render("Выберите уровень", True, WHITE)  # Заголовок
+    title_surface = font.render("Выберите режим", True, WHITE)  # Заголовок
     screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
     # Кнопка "Начать игру"
     pygame.draw.rect(screen, WHITE, first_level_button)
-    first_level_text = button_font.render("1", True, BLACK)
+    first_level_text = button_font.render("Легкий", True, BLACK)
     screen.blit(first_level_text,
                 (first_level_button.x + first_level_button.width // 2 - first_level_text.get_width() // 2,
                  first_level_button.y + first_level_button.height // 2 - first_level_text.get_height() // 2))
 
     # Кнопка "Рейтинг"
     pygame.draw.rect(screen, WHITE, second_level_button)
-    second_level_text = button_font.render("2", True, BLACK)
+    second_level_text = button_font.render("Средний", True, BLACK)
     screen.blit(second_level_text,
                 (second_level_button.x + second_level_button.width // 2 - second_level_text.get_width() // 2,
                  second_level_button.y + second_level_button.height // 2 - second_level_text.get_height() // 2))
 
     pygame.draw.rect(screen, WHITE, third_level_button)
-    third_level_text = button_font.render("3", True, BLACK)
+    third_level_text = button_font.render("Сложный", True, BLACK)
     screen.blit(third_level_text,
                 (third_level_button.x + third_level_button.width // 2 - third_level_text.get_width() // 2,
                  third_level_button.y + third_level_button.height // 2 - third_level_text.get_height() // 2))
@@ -67,17 +67,17 @@ def main():
                 if first_level_button.collidepoint(event.pos):
                     from main import Game
                     game = Game()
-                    game.run()
+                    game.run(1)
                     break
                 elif second_level_button.collidepoint(event.pos):
                     from main import Game
                     game = Game()
-                    game.run()
+                    game.run(2)
                     break
                 elif third_level_button.collidepoint(event.pos):
                     from main import Game
                     game = Game()
-                    game.run()
+                    game.run(3)
                     break
                 elif menu_button.collidepoint(event.pos):
                     import start_game

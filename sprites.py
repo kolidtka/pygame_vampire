@@ -81,7 +81,7 @@ class Bullet(pygame.sprite.Sprite):
 
 # Класс для врага
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, pos, frames, groups, player, collision_sprites):
+    def __init__(self, pos, frames, groups, player, collision_sprites, level):
         super().__init__(groups)
         self.player = player  # Сохранение ссылки на игрока
 
@@ -93,7 +93,12 @@ class Enemy(pygame.sprite.Sprite):
         self.hitbox_rect = self.rect.inflate(-20, -40)  # Установка коллайдера врага
         self.collision_sprites = collision_sprites  # Группа спрайтов для проверки коллизий
         self.direction = pygame.Vector2()  # Вектор направления врага
-        self.speed = 200  # Скорость врага
+        if level == 1:
+            self.speed = 100  # Скорость врага
+        elif level == 2:
+            self.speed = 200
+        else:
+            self.speed = 300
 
         self.death_time = 0  # Время смерти врага
         self.death_duration = 400  # Длительность смерти в миллисекундах

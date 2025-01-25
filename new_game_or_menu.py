@@ -25,7 +25,7 @@ menu_button = pygame.Rect(300, 300, 670, 70)
 def draw_start_menu():
     screen.fill(BLACK)  # Заливаем экран черным цветом
     title_surface = font.render("Вы проиграли!(", True, WHITE)  # Заголовок
-    screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 70))  # Размещаем заголовок
+    screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
     # Кнопка "Начать игру"
     pygame.draw.rect(screen, WHITE, new_game_button)

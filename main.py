@@ -130,7 +130,7 @@ class Game:
         with open("ratings.txt", 'a') as f:
             f.write(f"{self.counter}\n")
 
-    def run(self):
+    def run(self, level):
         # Основной игровой цикл
         while self.running:
             dt = self.clock.tick() / 1000  # dt: время между кадрами
@@ -142,7 +142,7 @@ class Game:
                 if event.type == self.enemy_event:
                     # Создание врага в случайной позиции из списка
                     Enemy(choice(self.spawn_positions), choice(list(self.enemy_frames.values())),
-                          (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites)
+                          (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, level)
 
             # Обновление состояния игры
             self.gun_timer()  # Проверка времени для стрельбы
