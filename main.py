@@ -11,6 +11,7 @@ from groups import AllSprites
 class Game:
     def __init__(self):
         pygame.init()  # Инициализация Pygame
+        self.counter = 0
         # Установка области отображения (размера окна)
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('Уцелевший')  # Установка заголовка окна
@@ -114,14 +115,20 @@ class Game:
                     self.impact_sound.play()  # Воспроизведение звука удара
                     for sprite in collision_sprites:
                         sprite.destroy()  # Уничтожение врага
+                        self.counter += 1
                     bullet.kill()  # Уничтожение пули
 
     def player_collision(self):
         # Проверка столкновения игрока с врагами
         if pygame.sprite.spritecollide(self.player, self.enemy_sprites, False, pygame.sprite.collide_mask):
             self.running = False  # Остановка игры, если игрок столкнулся с врагом
+            self.rating()
             import new_game_or_menu
             new_game_or_menu.main()
+
+    def rating(self):
+        with open("ratings.txt", 'a') as f:
+            f.write(f"{self.counter}\n")
 
     def run(self):
         # Основной игровой цикл

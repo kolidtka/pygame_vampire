@@ -48,8 +48,12 @@ def draw_start_menu():
 
 
 def show_ranking():
-    # Здесь вы можете добавить логику для показа таблицы рейтингов
-    print("Таблица рейтингов")  # Пример, можете заменить на свою логику
+    with open("ratings.txt", "r") as file:
+        first_line = file.readline()
+        print(first_line.split())
+        for cou_enem in file:
+            print(int(cou_enem))
+    print()
 
 
 def main():

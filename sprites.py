@@ -65,7 +65,7 @@ class Bullet(pygame.sprite.Sprite):
         self.image = surf  # Установка изображения пули
         self.rect = self.image.get_frect(center=pos)  # Установка позиции пули
         self.spawn_time = pygame.time.get_ticks()  # Время появления пули
-        self.lifetime = 1000  # Длительность жизни пули в миллисекундах
+        self.lifetime = 500  # Длительность жизни пули в миллисекундах
 
         self.direction = direction  # Установка направления пули
         self.speed = 1200  # Скорость пули
