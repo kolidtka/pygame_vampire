@@ -48,9 +48,9 @@ def draw_start_menu():
 
 
 def show_ranking():
-    with open("ratings.txt", "r") as file:
-        first_line = file.readline()
-        print(first_line.split())
+    with open("ratings.txt", "r", encoding="utf-8") as file:
+        first_line = file.readline().split("\n")[0]
+        print(first_line)
         for cou_enem in file:
             print(int(cou_enem))
     print()
