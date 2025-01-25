@@ -57,10 +57,6 @@ def main():
                     break
                 elif menu_button.collidepoint(event.pos):
                     import start_game
-                    start_game.main_loop()
+                    start_game.main()
 
         draw_start_menu()
-
-
-if __name__ == "__main__":
-    main_loop()

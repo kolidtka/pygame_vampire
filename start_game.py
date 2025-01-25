@@ -25,7 +25,7 @@ escape_button = pygame.Rect(300, 400, 670, 70)
 def draw_start_menu():
     screen.fill(BLACK)  # Заливаем экран черным цветом
     title_surface = font.render("Стартовое окно", True, WHITE)  # Заголовок
-    screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 70))  # Размещаем заголовок
+    screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
     # Кнопка "Начать игру"
     pygame.draw.rect(screen, WHITE, start_button)
@@ -52,7 +52,7 @@ def show_ranking():
     print("Таблица рейтингов")  # Пример, можете заменить на свою логику
 
 
-def main_loop():
+def main():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -61,9 +61,8 @@ def main_loop():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
-                    from main import Game
-                    game = Game()
-                    game.run()
+                    import levels
+                    levels.main()
                     break
                 elif rating_button.collidepoint(event.pos):
                     show_ranking()
@@ -75,4 +74,4 @@ def main_loop():
 
 
 if __name__ == "__main__":
-    main_loop()
+    main()
