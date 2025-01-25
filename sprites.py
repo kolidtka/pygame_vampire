@@ -47,3 +47,10 @@ class Gun(pygame.sprite.Sprite):
         self.get_direction()
         self.rotate_gun()
         self.rect.center = self.player.rect.center + self.player_direction * self.distance
+
+
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, surf, pos, direction, groups):
+        super().__init__(groups)
+        self.image = surf
+        self.rect = self.image.get_frect(center=pos)
