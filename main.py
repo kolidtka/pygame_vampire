@@ -1,3 +1,4 @@
+import sys
 from random import randint, choice
 import pygame
 from pytmx.util_pygame import load_pygame
@@ -119,6 +120,8 @@ class Game:
         # Проверка столкновения игрока с врагами
         if pygame.sprite.spritecollide(self.player, self.enemy_sprites, False, pygame.sprite.collide_mask):
             self.running = False  # Остановка игры, если игрок столкнулся с врагом
+            import new_game_or_menu
+            new_game_or_menu.main()
 
     def run(self):
         # Основной игровой цикл
@@ -147,6 +150,7 @@ class Game:
             pygame.display.update()  # Обновление дисплея
 
         pygame.quit()  # Закрытие Pygame при выходе из игры
+        sys.exit()
 
 
 if __name__ == '__main__':
