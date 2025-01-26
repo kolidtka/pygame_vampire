@@ -160,8 +160,3 @@ class Game:
 
         pygame.quit()  # Закрытие Pygame при выходе из игры
         sys.exit()
-
-
-if __name__ == '__main__':
-    game = Game()
-    game.run()

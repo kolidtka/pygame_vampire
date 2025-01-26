@@ -1,5 +1,6 @@
-from sprites import *
 import sys
+
+from sprites import *
 
 # Инициализация Pygame
 pygame.init()
