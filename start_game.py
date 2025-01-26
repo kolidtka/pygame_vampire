@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Стартовое окно")
 
 # Определение цветов
-BLACK = (154, 205, 50)
+GREEN = (154, 205, 50)
 WHITE = (255, 255, 255)
 
 # Шрифты
@@ -23,24 +23,24 @@ escape_button = pygame.Rect(300, 400, 670, 70)
 
 
 def draw_start_menu():
-    screen.fill(BLACK)  # Заливаем экран черным цветом
+    screen.fill(GREEN)  # Заливаем экран зеленым цветом
     title_surface = font.render("Стартовое окно", True, WHITE)  # Заголовок
     screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
     # Кнопка "Начать игру"
     pygame.draw.rect(screen, WHITE, start_button)
-    start_text = button_font.render("Начать игру", True, BLACK)
+    start_text = button_font.render("Начать игру", True, GREEN)
     screen.blit(start_text, (start_button.x + start_button.width // 2 - start_text.get_width() // 2,
                              start_button.y + start_button.height // 2 - start_text.get_height() // 2))
 
     # Кнопка "Рейтинг"
     pygame.draw.rect(screen, WHITE, rating_button)
-    rating_text = button_font.render("Рейтинг", True, BLACK)
+    rating_text = button_font.render("Рейтинг", True, GREEN)
     screen.blit(rating_text, (rating_button.x + rating_button.width // 2 - rating_text.get_width() // 2,
                               rating_button.y + rating_button.height // 2 - rating_text.get_height() // 2))
 
     pygame.draw.rect(screen, WHITE, escape_button)
-    escape_text = button_font.render("Выход", True, BLACK)
+    escape_text = button_font.render("Выход", True, GREEN)
     screen.blit(escape_text, (escape_button.x + escape_button.width // 2 - escape_text.get_width() // 2,
                               escape_button.y + escape_button.height // 2 - escape_text.get_height() // 2))
 
