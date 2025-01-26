@@ -67,8 +67,8 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
-                    import levels
-                    levels.main()
+                    import modes
+                    modes.main()
                     break
                 elif rating_button.collidepoint(event.pos):
                     show_ranking()

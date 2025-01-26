@@ -1,7 +1,5 @@
 import sys
 
-import pygame
-
 from sprites import *
 
 # Инициализация Pygame
@@ -53,8 +51,8 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if new_game_button.collidepoint(event.pos):
-                    import levels
-                    levels.main()
+                    import modes
+                    modes.main()
                     break
                 elif menu_button.collidepoint(event.pos):
                     import start_game
