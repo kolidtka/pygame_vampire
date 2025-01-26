@@ -27,17 +27,17 @@ def draw_start_menu():
     title_surface = font.render("Вы проиграли!(", True, WHITE)  # Заголовок
     screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
-    # Кнопка "Начать игру"
+    # Кнопка "Начать новую игру"
     pygame.draw.rect(screen, WHITE, new_game_button)
-    start_text = button_font.render("Начать новую игру", True, BLACK)
-    screen.blit(start_text, (new_game_button.x + new_game_button.width // 2 - start_text.get_width() // 2,
-                             new_game_button.y + new_game_button.height // 2 - start_text.get_height() // 2))
+    new_game_text = button_font.render("Начать новую игру", True, BLACK)
+    screen.blit(new_game_text, (new_game_button.x + new_game_button.width // 2 - new_game_text.get_width() // 2,
+                                new_game_button.y + new_game_button.height // 2 - new_game_text.get_height() // 2))
 
-    # Кнопка "Рейтинг"
+    # Кнопка "Меню"
     pygame.draw.rect(screen, WHITE, menu_button)
-    rating_text = button_font.render("Меню", True, BLACK)
-    screen.blit(rating_text, (menu_button.x + menu_button.width // 2 - rating_text.get_width() // 2,
-                              menu_button.y + menu_button.height // 2 - rating_text.get_height() // 2))
+    menu_text = button_font.render("Меню", True, BLACK)
+    screen.blit(menu_text, (menu_button.x + menu_button.width // 2 - menu_text.get_width() // 2,
+                            menu_button.y + menu_button.height // 2 - menu_text.get_height() // 2))
 
     pygame.display.flip()  # Обновляем экран
 
