@@ -39,6 +39,7 @@ def draw_start_menu():
     screen.blit(rating_text, (rating_button.x + rating_button.width // 2 - rating_text.get_width() // 2,
                               rating_button.y + rating_button.height // 2 - rating_text.get_height() // 2))
 
+    # Кнопка "Выход"
     pygame.draw.rect(screen, WHITE, escape_button)
     escape_text = button_font.render("Выход", True, GREEN)
     screen.blit(escape_text, (escape_button.x + escape_button.width // 2 - escape_text.get_width() // 2,

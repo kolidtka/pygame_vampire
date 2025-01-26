@@ -1,5 +1,6 @@
-from sprites import *
 import sys
+
+from sprites import *
 
 # Инициализация Pygame
 pygame.init()
@@ -23,31 +24,33 @@ third_level_button = pygame.Rect(440, 400, 400, 70)
 menu_button = pygame.Rect(300, 500, 680, 70)
 
 
-def draw_start_menu():
+def draw_level_menu():
     screen.fill(GREEN)  # Заливаем экран зеленым цветом
     title_surface = font.render("Выберите режим", True, WHITE)  # Заголовок
     screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
 
-    # Кнопка "Начать игру"
+    # Кнопка выбора "Легкого" режима
     pygame.draw.rect(screen, WHITE, first_level_button)
     first_level_text = button_font.render("Легкий", True, GREEN)
     screen.blit(first_level_text,
                 (first_level_button.x + first_level_button.width // 2 - first_level_text.get_width() // 2,
                  first_level_button.y + first_level_button.height // 2 - first_level_text.get_height() // 2))
 
-    # Кнопка "Рейтинг"
+    # Кнопка выбора "Среднего" режима
     pygame.draw.rect(screen, WHITE, second_level_button)
     second_level_text = button_font.render("Средний", True, GREEN)
     screen.blit(second_level_text,
                 (second_level_button.x + second_level_button.width // 2 - second_level_text.get_width() // 2,
                  second_level_button.y + second_level_button.height // 2 - second_level_text.get_height() // 2))
 
+    # Кнопка выбора "Тяжёлого" режима
     pygame.draw.rect(screen, WHITE, third_level_button)
     third_level_text = button_font.render("Сложный", True, GREEN)
     screen.blit(third_level_text,
                 (third_level_button.x + third_level_button.width // 2 - third_level_text.get_width() // 2,
                  third_level_button.y + third_level_button.height // 2 - third_level_text.get_height() // 2))
 
+    # Кнопка "Меню" (возвращение к стартовому окну)
     pygame.draw.rect(screen, WHITE, menu_button)
     menu_button_text = button_font.render("Меню", True, GREEN)
     screen.blit(menu_button_text, (menu_button.x + menu_button.width // 2 - menu_button_text.get_width() // 2,
@@ -83,4 +86,4 @@ def main():
                     import start_game
                     start_game.main()
 
-        draw_start_menu()
+        draw_level_menu()
