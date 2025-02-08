@@ -18,8 +18,8 @@ font = pygame.font.Font(None, 62)
 button_font = pygame.font.Font(None, 50)
 
 # Определяем кнопки
-new_level_button = pygame.Rect(300, 200, 680, 70)
-this_level_button = pygame.Rect(300, 300, 680, 70)
+first_map_button = pygame.Rect(300, 200, 680, 70)
+second_map_button = pygame.Rect(300, 300, 680, 70)
 menu_button = pygame.Rect(300, 400, 680, 70)
 
 
@@ -32,19 +32,20 @@ def draw_mode_menu(mode):
     else:
         title_surface = font.render("Вы победили! Хотите перейти в свободный режим?", True, WHITE)  # Заголовок
         screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
-    
-    pygame.draw.rect(screen, WHITE, new_level_button)
-    new_level = button_font.render("Да", True, GREEN)
-    screen.blit(new_level,
-                (new_level_button.x + new_level_button.width // 2 - new_level.get_width() // 2,
-                 new_level_button.y + new_level_button.height // 2 - new_level.get_height() // 2))
 
-    # Кнопка выбора "Среднего" режима
-    pygame.draw.rect(screen, WHITE, this_level_button)
-    this_level = button_font.render("Нет", True, GREEN)
-    screen.blit(this_level,
-                (this_level_button.x + this_level_button.width // 2 - this_level.get_width() // 2,
-                 this_level_button.y + this_level_button.height // 2 - this_level.get_height() // 2))
+    # Кнопка выбора следующего уровня/свободного режима
+    pygame.draw.rect(screen, WHITE, first_map_button)
+    first_map_text = button_font.render("Да", True, GREEN)
+    screen.blit(first_map_text,
+                (first_map_button.x + first_map_button.width // 2 - first_map_text.get_width() // 2,
+                 first_map_button.y + first_map_button.height // 2 - first_map_text.get_height() // 2))
+
+    # Кнопка выбора того же уровня/режима, на котором мы сейчас находимся
+    pygame.draw.rect(screen, WHITE, second_map_button)
+    second_map_text = button_font.render("Нет", True, GREEN)
+    screen.blit(second_map_text,
+                (second_map_button.x + second_map_button.width // 2 - second_map_text.get_width() // 2,
+                 second_map_button.y + second_map_button.height // 2 - second_map_text.get_height() // 2))
 
     # Кнопка "Меню" (возвращение к стартовому окну)
     pygame.draw.rect(screen, WHITE, menu_button)
@@ -63,12 +64,12 @@ def main(mode):
                 sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if new_level_button.collidepoint(event.pos):
+                if first_map_button.collidepoint(event.pos):
                     from main import Game
                     game = Game(min(3, mode + 1))
                     game.run()
                     break
-                elif this_level_button.collidepoint(event.pos):
+                elif second_map_button.collidepoint(event.pos):
                     if mode == 1:
                         from main import Game
                         game = Game(min(3, mode))
