@@ -46,7 +46,7 @@ def draw_mode_menu():
 
     # Кнопка выбора "Тяжёлого" режима
     pygame.draw.rect(screen, WHITE, hard_mode_button)
-    hard_mode_text = button_font.render("Третий", True, GREEN)
+    hard_mode_text = button_font.render("Свободный режим", True, GREEN)
     screen.blit(hard_mode_text,
                 (hard_mode_button.x + hard_mode_button.width // 2 - hard_mode_text.get_width() // 2,
                  hard_mode_button.y + hard_mode_button.height // 2 - hard_mode_text.get_height() // 2))

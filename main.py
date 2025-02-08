@@ -147,10 +147,13 @@ class Game:
     def run(self):
         """Основной игровой цикл"""
         while self.running:
-            kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (0, 0, 0))
-            if 50 - self.counter <= 0:
-                import level_passed
-                level_passed.main(self.mode)
+            if self.mode != 3:
+                kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (0, 0, 0))
+                if 50 - self.counter <= 0:
+                    import level_passed
+                    level_passed.main(self.mode)
+            else:
+                kill_text = self.font.render(f"Убито: {self.counter}", True, (0, 0, 0))
             self.display_surface.blit(kill_text, (15, 15))  # Отрисовка текста в верхнем левом углу
             pygame.display.flip()
             dt = self.clock.tick() / 1000  # dt: время между кадрами

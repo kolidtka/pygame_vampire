@@ -23,11 +23,15 @@ this_level_button = pygame.Rect(300, 300, 680, 70)
 menu_button = pygame.Rect(300, 400, 680, 70)
 
 
-def draw_mode_menu():
+def draw_mode_menu(mode):
     """Отрисовка экрана выбора режима"""
     screen.fill(GREEN)  # Заливаем экран зеленым цветом
-    title_surface = font.render("Вы победили! Хотите перейти на следующий уровень?", True, WHITE)  # Заголовок
-    screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
+    if mode == 1:
+        title_surface = font.render("Вы победили! Хотите перейти на следующий уровень?", True, WHITE)  # Заголовок
+        screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
+    else:
+        title_surface = font.render("Вы победили! Хотите перейти в свободный режим?", True, WHITE)  # Заголовок
+        screen.blit(title_surface, (WINDOW_WIDTH // 2 - title_surface.get_width() // 2, 120))  # Размещаем заголовок
     
     pygame.draw.rect(screen, WHITE, new_level_button)
     new_level = button_font.render("Да", True, GREEN)
@@ -37,7 +41,7 @@ def draw_mode_menu():
 
     # Кнопка выбора "Среднего" режима
     pygame.draw.rect(screen, WHITE, this_level_button)
-    this_level = button_font.render("Нет, хочу остаться на этом", True, GREEN)
+    this_level = button_font.render("Нет", True, GREEN)
     screen.blit(this_level,
                 (this_level_button.x + this_level_button.width // 2 - this_level.get_width() // 2,
                  this_level_button.y + this_level_button.height // 2 - this_level.get_height() // 2))
@@ -65,12 +69,16 @@ def main(mode):
                     game.run()
                     break
                 elif this_level_button.collidepoint(event.pos):
-                    from main import Game
-                    game = Game(min(3, mode))
-                    game.run()
-                    break
+                    if mode == 1:
+                        from main import Game
+                        game = Game(min(3, mode))
+                        game.run()
+                        break
+                    else:
+                        import levels
+                        levels.main()
                 elif menu_button.collidepoint(event.pos):
                     import start_game
                     start_game.main()
 
-        draw_mode_menu()
+        draw_mode_menu(mode)
