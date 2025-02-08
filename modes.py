@@ -7,7 +7,7 @@ pygame.init()
 
 # Настройка окна
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Выбор уровня")
+pygame.display.set_caption("Выбор режима")
 
 # Определение цветов
 GREEN = (154, 205, 50)
