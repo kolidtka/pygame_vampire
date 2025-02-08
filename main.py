@@ -144,7 +144,7 @@ class Game:
         """Основной игровой цикл"""
         while self.running:
             kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (255, 255, 255))
-            if 5 - self.counter == 0:
+            if 50 - self.counter == 0:
                 import level_passed
                 level_passed.main(mode)
             self.display_surface.blit(kill_text, (15, 15))  # Отрисовка текста в верхнем левом углу
