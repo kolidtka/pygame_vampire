@@ -100,7 +100,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = 300
 
         self.death_time = 0  # Время смерти врага
-        self.death_duration = 400  # Длительность смерти в миллисекундах
+        self.death_duration = 200  # Длительность смерти в миллисекундах
 
     def animate(self, dt):
         """ Обновление анимации врага """

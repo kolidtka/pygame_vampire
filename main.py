@@ -1,5 +1,5 @@
 import sys
-from random import randint, choice
+from random import choice
 
 from pytmx.util_pygame import load_pygame
 from player import Player
@@ -11,6 +11,7 @@ class Game:
     def __init__(self):
         pygame.init()  # Инициализация Pygame
         self.counter = 0
+        self.font = pygame.font.Font(None, 74)
         # Установка области отображения (размера окна)
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('Уцелевший')  # Установка заголовка окна
@@ -142,8 +143,10 @@ class Game:
     def run(self, mode):
         """Основной игровой цикл"""
         while self.running:
+            kill_text = self.font.render(f"Убито: {self.counter}", True, (255, 255, 255))
+            self.display_surface.blit(kill_text, (15, 15))  # Отрисовка текста в верхнем левом углу
+            pygame.display.flip()
             dt = self.clock.tick() / 1000  # dt: время между кадрами
-
             # Обработка событий
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -157,7 +160,7 @@ class Game:
                         if distance_to_player >= self.spawn_distance:
                             valid_spawn = True
                             Enemy(spawn_position, choice(list(self.enemy_frames.values())),
-                              (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, mode)
+                                  (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, mode)
 
             # Обновление состояния игры
             self.gun_timer()  # Проверка времени для стрельбы
