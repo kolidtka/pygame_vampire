@@ -86,7 +86,7 @@ class Game:
     def setup(self):
         """Загрузка карты"""
         # Загрузка уровня из TMX карты
-        if self.mode == 1:
+        if self.mode == 2:
             map = load_pygame(join("data", "maps", "world.tmx"))
         else:
             map = load_pygame(join("data", "maps", "world2.tmx"))

@@ -64,10 +64,10 @@ class Bullet(pygame.sprite.Sprite):
         self.image = surf  # Установка изображения пули
         self.rect = self.image.get_frect(center=pos)  # Установка позиции пули
         self.spawn_time = pygame.time.get_ticks()  # Время появления пули
-        self.lifetime = 500  # Длительность жизни пули в миллисекундах
+        self.lifetime = 400  # Длительность жизни пули в миллисекундах
 
         self.direction = direction  # Установка направления пули
-        self.speed = 1200  # Скорость пули
+        self.speed = 1000  # Скорость пули
 
     def update(self, dt):
         # Обновление позиции пули на каждом кадре
@@ -95,7 +95,7 @@ class Enemy(pygame.sprite.Sprite):
         self.speed = 100  # Скорость врага
 
         self.death_time = 0  # Время смерти врага
-        self.death_duration = 200  # Длительность смерти в миллисекундах
+        self.death_duration = 50  # Длительность смерти в миллисекундах
 
     def animate(self, dt):
         """ Обновление анимации врага """
