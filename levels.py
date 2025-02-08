@@ -79,9 +79,8 @@ def main():
                     game.run()
                     break
                 elif hard_mode_button.collidepoint(event.pos):
-                    from main import Game
-                    game = Game(3)
-                    game.run()
+                    import make_a_choice
+                    make_a_choice.main()
                     break
                 elif menu_button.collidepoint(event.pos):
                     import start_game

@@ -86,10 +86,10 @@ class Game:
     def setup(self):
         """Загрузка карты"""
         # Загрузка уровня из TMX карты
-        if self.mode == 2:
-            map = load_pygame(join("data", "maps", "world.tmx"))
-        else:
+        if self.mode == 1 or self.mode == 31:
             map = load_pygame(join("data", "maps", "world2.tmx"))
+        elif self.mode == 2 or self.mode == 32:
+            map = load_pygame(join("data", "maps", "world.tmx"))
 
         # Загрузка плиток земли
         for x, y, image in map.get_layer_by_name("Ground").tiles():
@@ -131,7 +131,8 @@ class Game:
         """Проверка столкновения игрока с врагами"""
         if pygame.sprite.spritecollide(self.player, self.enemy_sprites, False, pygame.sprite.collide_mask):
             self.running = False  # Остановка игры, если игрок столкнулся с врагом
-            self.rating()
+            if self.mode == 31 or self.mode == 32:
+                self.rating()
             import new_game_or_menu
             new_game_or_menu.main()
 
@@ -141,13 +142,13 @@ class Game:
             f.write(f"{self.counter}\n")
 
     def calculate_distance(self, pos1, pos2):
-        """Вычисляет расстояние между двумя позициями."""
+        """Вычисляет расстояние между двумя позициями"""
         return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
 
     def run(self):
         """Основной игровой цикл"""
         while self.running:
-            if self.mode != 3:
+            if self.mode == 1 or self.mode == 2:
                 kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (0, 0, 0))
                 if 50 - self.counter <= 0:
                     import level_passed
