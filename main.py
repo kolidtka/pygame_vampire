@@ -32,6 +32,7 @@ class Game:
         self.enemy_event = pygame.event.custom_type()  # Создание пользовательского события для появления врагов
         pygame.time.set_timer(self.enemy_event, 500)  # Установка таймера на 500 мс
         self.spawn_positions = []  # Список позиций для появления врагов
+        self.spawn_distance = 200  # Минимальное расстояние от героя, на котором может появиться враг
 
         # Загрузка звуков
         self.shoot_sound = pygame.mixer.Sound(join("audio", "shoot.wav"))  # Звук выстрела
@@ -134,6 +135,10 @@ class Game:
         with open("ratings.txt", 'a') as f:
             f.write(f"{self.counter}\n")
 
+    def calculate_distance(self, pos1, pos2):
+        """Вычисляет расстояние между двумя позициями."""
+        return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
+
     def run(self, mode):
         """Основной игровой цикл"""
         while self.running:
@@ -144,9 +149,15 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False  # Выход из игры при закрытии окна
                 if event.type == self.enemy_event:
-                    # Создание врага в случайной позиции из списка
-                    Enemy(choice(self.spawn_positions), choice(list(self.enemy_frames.values())),
-                          (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, mode)
+                    valid_spawn = False
+                    while not valid_spawn:
+                        spawn_position = choice(self.spawn_positions)
+                        player_position = (self.player.rect.x, self.player.rect.y)
+                        distance_to_player = self.calculate_distance(spawn_position, player_position)
+                        if distance_to_player >= self.spawn_distance:
+                            valid_spawn = True
+                            Enemy(spawn_position, choice(list(self.enemy_frames.values())),
+                              (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, mode)
 
             # Обновление состояния игры
             self.gun_timer()  # Проверка времени для стрельбы
