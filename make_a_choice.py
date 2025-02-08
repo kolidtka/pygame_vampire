@@ -18,9 +18,9 @@ font = pygame.font.Font(None, 62)
 button_font = pygame.font.Font(None, 50)
 
 # Определяем кнопки
-first_map_button = pygame.Rect(300, 200, 680, 70)
-second_map_button = pygame.Rect(300, 300, 680, 70)
-menu_button = pygame.Rect(300, 400, 680, 70)
+first_map_button = pygame.Rect(300, 200, 670, 70)
+second_map_button = pygame.Rect(300, 300, 670, 70)
+menu_button = pygame.Rect(300, 400, 670, 70)
 
 
 def draw_mode_menu():

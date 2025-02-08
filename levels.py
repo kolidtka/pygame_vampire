@@ -18,10 +18,10 @@ font = pygame.font.Font(None, 74)
 button_font = pygame.font.Font(None, 50)
 
 # Определяем кнопки
-first_level_button = pygame.Rect(440, 200, 400, 70)
-second_level_button = pygame.Rect(440, 300, 400, 70)
-free_mode_button = pygame.Rect(440, 400, 400, 70)
-menu_button = pygame.Rect(300, 500, 680, 70)
+first_level_button = pygame.Rect(300, 200, 670, 70)
+second_level_button = pygame.Rect(300, 300, 670, 70)
+free_mode_button = pygame.Rect(300, 400, 670, 70)
+menu_button = pygame.Rect(300, 500, 670, 70)
 
 
 def draw_mode_menu():
