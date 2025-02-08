@@ -53,7 +53,7 @@ def show_ranking():
     with open("ratings.txt", "r", encoding="utf-8") as file:
         first_line = file.readline().split("\n")[0]
         print(first_line)
-        for cou_enem in file:
+        for cou_enem in sorted(file):
             print(int(cou_enem))
     print()
 
