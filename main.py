@@ -39,9 +39,7 @@ class Game:
         self.shoot_sound = pygame.mixer.Sound(join("audio", "shoot.wav"))  # Звук выстрела
         self.shoot_sound.set_volume(0.4)  # Установка громкости
         self.impact_sound = pygame.mixer.Sound(join("audio", "impact.ogg"))  # Звук удара
-        self.music = pygame.mixer.Sound(join("audio", "music.wav"))  # Фоновая музыка
-        self.music.set_volume(0.3)  # Установка громкости музыки
-        self.music.play(loops=-1)  # Включение музыки в бесконечном цикле
+        self.impact_sound.set_volume(0.4)  # Установка громкости
 
         # Загрузка изображений и настройка объектов игры
         self.load_images()  # Загрузка изображений
