@@ -1,10 +1,7 @@
 import sys
 from random import randint, choice
 
-import pygame
-
 from pytmx.util_pygame import load_pygame
-from settings import *
 from player import Player
 from sprites import *
 from groups import AllSprites
@@ -49,6 +46,7 @@ class Game:
         self.setup()  # Настройка игры (загрузка карты и объектов)
 
     def load_images(self):
+        """Загрузка изображений"""
         # Загрузка изображения пули
         self.bullet_surf = pygame.image.load(join("images", "gun", "bullet.png")).convert_alpha()
 
@@ -64,6 +62,7 @@ class Game:
                     self.enemy_frames[folder].append(surf)  # Добавление изображения в список кадров
 
     def input(self):
+        """Реализация стрельбы"""
         # Обработка ввода для стрельбы
         if pygame.mouse.get_pressed()[0] and self.can_shoot:  # Если нажата левая кнопка мыши
             self.shoot_sound.play()  # Воспроизведение звука выстрела
@@ -74,6 +73,7 @@ class Game:
             self.shoot_time = pygame.time.get_ticks()  # Обновляем время последнего выстрела
 
     def gun_timer(self):
+        """Реализация перезарядки"""
         # Проверка времени для перезарядки
         if not self.can_shoot:
             current_time = pygame.time.get_ticks()  # Текущее время
@@ -81,6 +81,7 @@ class Game:
                 self.can_shoot = True  # Разрешаем стрелять
 
     def setup(self):
+        """Загрузка карты"""
         # Загрузка уровня из TMX карты
         map = load_pygame(join("data", "maps", "world.tmx"))
 
@@ -108,7 +109,7 @@ class Game:
                 self.spawn_positions.append((obj.x, obj.y))
 
     def bullet_collision(self):
-        # Проверка столкновения пуль с врагами
+        """Проверка столкновения пуль с врагами"""
         if self.bullet_sprites:
             for bullet in self.bullet_sprites:
                 collision_sprites = pygame.sprite.spritecollide(bullet, self.enemy_sprites, False,
@@ -121,7 +122,7 @@ class Game:
                     bullet.kill()  # Уничтожение пули
 
     def player_collision(self):
-        # Проверка столкновения игрока с врагами
+        """Проверка столкновения игрока с врагами"""
         if pygame.sprite.spritecollide(self.player, self.enemy_sprites, False, pygame.sprite.collide_mask):
             self.running = False  # Остановка игры, если игрок столкнулся с врагом
             self.rating()
@@ -129,11 +130,12 @@ class Game:
             new_game_or_menu.main()
 
     def rating(self):
+        """Вывод рейтинга"""
         with open("ratings.txt", 'a') as f:
             f.write(f"{self.counter}\n")
 
     def run(self, mode):
-        # Основной игровой цикл
+        """Основной игровой цикл"""
         while self.running:
             dt = self.clock.tick() / 1000  # dt: время между кадрами
 
