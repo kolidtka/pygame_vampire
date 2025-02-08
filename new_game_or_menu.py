@@ -51,7 +51,7 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if new_game_button.collidepoint(event.pos):
-                    import modes
+                    import levels
                     modes.main()
                     break
                 elif menu_button.collidepoint(event.pos):

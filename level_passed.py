@@ -61,13 +61,13 @@ def main(mode):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if new_level_button.collidepoint(event.pos):
                     from main import Game
-                    game = Game()
-                    game.run(mode + 1)
+                    game = Game(min(3, mode + 1))
+                    game.run()
                     break
                 elif this_level_button.collidepoint(event.pos):
                     from main import Game
-                    game = Game()
-                    game.run(mode)
+                    game = Game(min(3, mode))
+                    game.run()
                     break
                 elif menu_button.collidepoint(event.pos):
                     import start_game

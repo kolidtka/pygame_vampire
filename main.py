@@ -8,7 +8,7 @@ from groups import AllSprites
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, mode):
         pygame.init()  # Инициализация Pygame
         self.counter = 0
         self.font = pygame.font.Font(None, 74)
@@ -45,6 +45,7 @@ class Game:
 
         # Загрузка изображений и настройка объектов игры
         self.load_images()  # Загрузка изображений
+        self.mode = mode
         self.setup()  # Настройка игры (загрузка карты и объектов)
 
     def load_images(self):
@@ -85,7 +86,10 @@ class Game:
     def setup(self):
         """Загрузка карты"""
         # Загрузка уровня из TMX карты
-        map = load_pygame(join("data", "maps", "world.tmx"))
+        if self.mode == 1:
+            map = load_pygame(join("data", "maps", "world.tmx"))
+        else:
+            map = load_pygame(join("data", "maps", "world2.tmx"))
 
         # Загрузка плиток земли
         for x, y, image in map.get_layer_by_name("Ground").tiles():
@@ -140,13 +144,13 @@ class Game:
         """Вычисляет расстояние между двумя позициями."""
         return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
 
-    def run(self, mode):
+    def run(self):
         """Основной игровой цикл"""
         while self.running:
-            kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (255, 255, 255))
-            if 50 - self.counter == 0:
+            kill_text = self.font.render(f"Осталось убить: {50 - self.counter}", True, (0, 0, 0))
+            if 50 - self.counter <= 0:
                 import level_passed
-                level_passed.main(mode)
+                level_passed.main(self.mode)
             self.display_surface.blit(kill_text, (15, 15))  # Отрисовка текста в верхнем левом углу
             pygame.display.flip()
             dt = self.clock.tick() / 1000  # dt: время между кадрами
@@ -163,7 +167,7 @@ class Game:
                         if distance_to_player >= self.spawn_distance:
                             valid_spawn = True
                             Enemy(spawn_position, choice(list(self.enemy_frames.values())),
-                                  (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites, mode)
+                                  (self.all_sprites, self.enemy_sprites), self.player, self.collision_sprites)
 
             # Обновление состояния игры
             self.gun_timer()  # Проверка времени для стрельбы
